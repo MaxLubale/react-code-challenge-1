@@ -34,6 +34,7 @@ const TransactionTable = ({ transactions, onDelete }) => {
             <td>{transaction.description}</td>
             <td>{transaction.category}</td>
             <td>{transaction.amount}</td>
+            <td>{transaction.date}</td>
             <td>
               <button onClick={() => onDelete(transaction.id)}>Delete</button>
             </td>

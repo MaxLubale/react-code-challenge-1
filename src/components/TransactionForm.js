@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 const TransactionForm = ({ addTransaction }) => {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
+  const [date, setDate] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!description || !amount) {
+    if (!description || !amount || !date) {
       alert('Please fill out all fields');
       return;
     }
@@ -16,12 +17,14 @@ const TransactionForm = ({ addTransaction }) => {
       id: Date.now(),
       description,
       amount: parseFloat(amount),
+      date,
     };
 
     addTransaction(newTransaction);
     // Clear form fields
     setDescription('');
     setAmount('');
+    setDate('');
   };
 
   return (
@@ -40,6 +43,14 @@ const TransactionForm = ({ addTransaction }) => {
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+        />
+      </label>
+      <label>
+        Date:
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
         />
       </label>
       <button type="submit">Add Transaction</button>
